@@ -2,6 +2,7 @@ package com.example.spribeapitest.service.impl;
 
 import com.example.spribeapitest.dao.ProductDao;
 import com.example.spribeapitest.dao.ShoppingCartDao;
+import com.example.spribeapitest.exception.DataProcessingException;
 import com.example.spribeapitest.model.Product;
 import com.example.spribeapitest.model.ShoppingCart;
 import com.example.spribeapitest.model.User;
@@ -20,13 +21,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void addProduct(Product product, User user, int amount) {
-        if (!(product.getAmount() == 0)  && amount > 0 && product.getAmount() >= amount) {
-            ShoppingCart shoppingCart = shoppingCartDao.getByUser(user);
-            product.setAmount(product.getAmount() - amount);
-            productDao.update(product);
-            shoppingCart.getProducts().add(product);
-            shoppingCartDao.update(shoppingCart);
+        if (product.getAmount() == 0 && amount <= 0 && product.getAmount() < amount) {
+            throw new DataProcessingException("There no such amount for product "
+                    + product.getName());
         }
+        ShoppingCart shoppingCart = shoppingCartDao.getByUser(user);
+        product.setAmount(product.getAmount() - amount);
+        productDao.update(product);
+        shoppingCart.getProducts().add(product);
+        shoppingCartDao.update(shoppingCart);
     }
 
     @Override
