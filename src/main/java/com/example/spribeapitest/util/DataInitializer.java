@@ -46,13 +46,18 @@ public class DataInitializer {
         user.setRoles(Set.of(userRole));
         userService.add(user);
 
-        IntStream.range(0, 50).forEach(i -> {
-            Product product = new Product();
-            product.setName("Product " + i);
-            product.setWeight(new BigDecimal(String.valueOf(new Random().nextInt(500))));
-            product.setPrice(new BigDecimal(String.valueOf(new Random().nextInt(5000000))));
-            product.setAmount(new Random().nextInt(5000));
-            productService.add(product);
-        });
+        Product quantumComputer = new Product();
+        quantumComputer.setName("Quantum computer");
+        quantumComputer.setWeight(new BigDecimal("55.57"));
+        quantumComputer.setPrice(new BigDecimal("15000000"));
+        quantumComputer.setAmount(10);
+        productService.add(quantumComputer);
+
+        Product electronicComputer = new Product();
+        electronicComputer.setName("Electronic Computer");
+        electronicComputer.setWeight(new BigDecimal("3.5"));
+        electronicComputer.setPrice(new BigDecimal("15000"));
+        electronicComputer.setAmount(500);
+        productService.add(electronicComputer);
     }
 }
