@@ -7,9 +7,7 @@ import com.example.spribeapitest.service.ProductService;
 import com.example.spribeapitest.service.RoleService;
 import com.example.spribeapitest.service.UserService;
 import java.math.BigDecimal;
-import java.util.Random;
 import java.util.Set;
-import java.util.stream.IntStream;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
