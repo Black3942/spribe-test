@@ -20,7 +20,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void addProduct(Product product, User user, int amount) {
+    public synchronized void addProduct(Product product, User user, int amount) {
         if (product.getAmount() == 0 && amount <= 0 && product.getAmount() < amount) {
             throw new DataProcessingException("There no such amount for product "
                     + product.getName());
