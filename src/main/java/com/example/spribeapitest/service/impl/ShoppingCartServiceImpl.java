@@ -8,8 +8,6 @@ import com.example.spribeapitest.model.User;
 import com.example.spribeapitest.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
-
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartDao shoppingCartDao;
@@ -22,7 +20,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void addProduct(Product product, User user, int amount) {
-        if (!(product.getAmount() == 0  && amount > 0 && product.getAmount() >= amount)) {
+        if (!(product.getAmount() == 0)  && amount > 0 && product.getAmount() >= amount) {
             ShoppingCart shoppingCart = shoppingCartDao.getByUser(user);
             product.setAmount(product.getAmount() - amount);
             productDao.update(product);
