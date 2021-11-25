@@ -15,23 +15,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product add(Product product) {
+    public synchronized Product add(Product product) {
         return productDao.add(product);
     }
 
     @Override
-    public Product get(Long id) {
+    public synchronized Product get(Long id) {
         return productDao.get(id).orElseThrow(() ->
                 new DataProcessingException("Product with id " + id + " not found"));
     }
 
     @Override
-    public Product update(Product product) {
+    public synchronized Product update(Product product) {
         return productDao.update(product);
     }
 
     @Override
-    public void delete(Long id) {
+    public synchronized void delete(Long id) {
         productDao.delete(id);
     }
 }

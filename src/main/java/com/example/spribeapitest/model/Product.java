@@ -24,7 +24,7 @@ public class Product {
     private String name;
     private BigDecimal weight;
     private BigDecimal price;
-    private int amount;
+    private volatile int amount;
 
     @Override
     public boolean equals(Object o) {
